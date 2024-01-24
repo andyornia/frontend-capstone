@@ -4,20 +4,10 @@ import Nav from './Nav'
 const Footer = () => {
     return (
         <footer>
-            <img src="images/restaurant chef B.jpg" width={200} />
+            <img src="images/restaurant chef B.jpg" alt="Chef preparing a dish in our kitchen" width={200} />
+
+            <h1>Navigation</h1>
             <Nav/>
-            
-            <nav>
-                <h1>Navigation</h1>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html">About</a></li>
-                <li><a href="index.html">Menu</a></li>
-                <li><a href="index.html">Reservations</a></li>
-                <li><a href="index.html">Order Online</a></li>
-                <li><a href="index.html">Login</a></li>
-              </ul>
-            </nav>
             
             <nav>
                 <h1>Contact</h1>
