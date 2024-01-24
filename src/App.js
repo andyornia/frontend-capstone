@@ -4,6 +4,7 @@ import Main from './Main'
 import Footer from './Footer'
 
 import './App.css';
+import './styles.css'; // Import your CSS file
 
 
 
