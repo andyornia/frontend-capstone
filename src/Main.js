@@ -86,8 +86,8 @@ const Main = () => {
             <h2>Chicago</h2>
             <p>We are a family owned Mediterranean restaurant, focused on traditional recipes
             served with a modern twist</p>
-            <img src="./images/Mario and Adrian A.jpg" alt="Our chefs preparing a meal" width={80} />
-            <img src="./images/restaurant.jpg" alt="A view of our restaurant" width={80} />
+            <img src="./images/Mario and Adrian A.jpg" alt="Our chefs preparing a meal" width={200} />
+            <img src="./images/restaurant.jpg" alt="A view of our restaurant" width={200} />
             
         </section>
         </main>
