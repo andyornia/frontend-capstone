@@ -1,3 +1,90 @@
-h1 {
-    color:orange;
+
+
+body {
+    margin: 0 auto;
+    border: solid red 1px;
+}
+
+
+#root {
+    
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(50px, auto);
+
+}
+
+
+#root > header {
+    grid-column: 2/3;
+    grid-row: 1;
+}
+
+#root > nav {
+    grid-column: 4/13;
+    grid-row: 1;
+
+} 
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+}
+
+#main {
+    grid-row: 2;
+    grid-column: span 12;
+}
+
+#about-section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: #495E57;
+}
+
+#about-section #about-info {
+    grid-column:2/5;
+    grid-row: 1;
+    margin: 30px 20px 70px 20px;
+}
+
+#about-section h1 {
+    margin-bottom: 0px;
+}
+
+#about-section h2 {
+    margin-top: 0px;
+}
+
+#about-section #about-img {
+    grid-column: 7/13;
+    grid-row: 1;
+}
+
+#about-section img {
+    margin-top: 30px;
+    width: 350px;
+    height: 325px;
+    object-fit: cover;
+    object-position: 25% 25%;
+    position: absolute;
+}
+
+
+#root > main, #root > footer  {
+    grid-column: span 12;
 }
