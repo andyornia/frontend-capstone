@@ -5,8 +5,8 @@ const Main = () => {
         <main>
         <section id="about-section">
             <div id="about-info">
-                <h1>Little Lemon</h1>
-                <h2>Chicago</h2>
+                <h1 class="title">Little Lemon</h1>
+                <h2 class="city">Chicago</h2>
                 <p>
                     We are a family owned Mediterranean restaurant, 
                     focused on traditional recipes served with a modern twist.
@@ -18,71 +18,107 @@ const Main = () => {
             </div>
         </section>
         
-        <section>
-            <h1>This weeks specials!</h1>
-            <button>Online Menu</button>
-
+        <section id="specials">
+            <div id="specials-info">
+                <h1>This weeks specials!</h1>
+                <button>Online Menu</button>
+            </div>
+            <div id="card-container">
             <div class="card">
-                <img src="./images/greeksalad.jpg" alt="Greek salad" width={200} />
-                <h3>Greek salad</h3>
-                <p>$14.00</p>
-                <p>The famous greek salad of crispy lettuce, peppers, olives, 
-                and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
-                <p>Order a delivery</p>
-                <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
+                <img src="./images/greeksalad.jpg" alt="Greek salad" class="card-image" />
+                <div class="card-description">
+                    <h3>Greek salad</h3>
+                    <p class="price">$14.00</p>
+                    <p class="card-caption">The famous greek salad of crispy lettuce, peppers, olives, 
+                    and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
+                    <p class="delivery">Order a delivery</p>
+                    <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
+                </div>
             </div>
 
             <div class="card">
-                <img src="./images/restauranfood.jpg" alt="Plate of Bruschetta" width={200} />
-                <h3>Bruschetta</h3>
-                <p>$8.00</p>
-                <p>The famous greek salad of crispy lettuce, peppers, olives, 
-                and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.</p>
-                <p>Order a delivery</p>
-                <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
+                <img src="./images/restauranfood.jpg" alt="Plate of Bruschetta" class="card-image" />
+                <div class="card-description">
+                    <h3>Bruschetta</h3>
+                    <p class="price">$8.00</p>
+                    <p class="card-caption">Our bruschetta is made from grilled bread that has been smeared with garlic
+                    and seasoned with salt and olive oil.</p>
+                    <p class="delivery">Order a delivery</p>
+                    <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
+                </div>
             </div>
             
             <div class="card">
-                <img src="./images/lemon dessert.jpg" alt="Lemon dessert" width={200} />
-                <h3>Lemon dessert</h3>
-                <p>$6.50</p>
-                <p>This lemon dessert is extremely tasty. It's got fresh lemon, 
-                lemon frosting, lemon sugar, and lemon zest.</p>
-                <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
-            </div>            
-            
+                <img src="./images/lemon dessert.jpg" alt="Lemon dessert" class="card-image" />
+                <div class="card-description">
+                    <h3>Lemon dessert</h3>
+                    <p class="price">$6.50</p>
+                    <p class="card-caption">This lemon dessert is extremely tasty. It's got fresh lemon, 
+                    lemon frosting, lemon sugar, and lemon zest.</p>
+                    <p class="delivery">Order a delivery</p>
+                    <img src="./images/motorbike.png" alt="Scooter delivery logo" width={30}/>
+                </div>
+            </div> 
+            </div>
+
         </section>
         
-        <section>
+        <section id="testimonials">
             <h1>Testimonials</h1>
-            <div class="testimonial">
-                <h3>Rating</h3>
-                <p>*****</p>
-                <img src="./images/avatar-5261896_1280.png" alt="Beth avatar" width={80} />
-                <p>Beth</p>
-                <p>The food her is soooo good!!!</p>
+            <div id="testimonial-container">
+                <div class="testimonial">
+                    <h3>Rating</h3>
+                    <p class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </p>
+                    <img src="./images/avatar_1.png" alt="Beth avatar"  />
+                    <p class="name">Beth</p>
+                    <p class="review">The food here is soooo good!!!</p>
+                </div>
+                <div class="testimonial">
+                    <h3>Rating</h3>
+                    <p class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </p>
+                    <img src="./images/avatar_2.png" alt="Ivan avatar"  />
+                    <p class="name">Ivan</p>
+                    <p class="review">You have to try the bruschetta</p>
+                </div>
+                <div class="testimonial">
+                    <h3>Rating</h3>
+                    <p class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </p>                    
+                    <img src="./images/avatar_3.png" alt="Carol avatar" />
+                    <p class="name">Carol</p>
+                    <p class="review">Lemon dessert is divine</p>
+                </div>
+                <div class="testimonial">
+                    <h3>Rating</h3>
+                    <p class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </p>
+                    <img src="./images/avatar_4.png" alt="George avatar" />
+                    <p class="name">George</p>
+                    <p class="review">I come back every week to order the pasta!</p>
+                </div>
             </div>
-            <div class="testimonial">
-                <h3>Rating</h3>
-                <p>*****</p>
-                <img src="./images/avatar-5261896_1280.png" alt="Ivan avatar" width={80} />
-                <p>Ivan</p>
-                <p>You have to try the bruschetta</p>
-            </div>
-            <div class="testimonial">
-                <h3>Rating</h3>
-                <p>****</p>
-                <img src="./images/avatar-5261896_1280.png" alt="Carol avatar" width={80} />
-                <p>Carol</p>
-                <p>Lemon dessert is divine</p>
-            </div>
-            <div class="testimonial">
-                <h3>Rating</h3>
-                <p>*****</p>
-                <img src="./images/avatar-5261896_1280.png" alt="George avatar" width={80} />
-                <p>George</p>
-                <p>The food her is soooo good!!!</p>
-            </div>            
         </section>
         
         <section>
