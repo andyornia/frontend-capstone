@@ -5,11 +5,12 @@ const Footer = () => {
     return (
         <footer>
             <img src="images/restaurant chef B.jpg" alt="Chef preparing a dish in our kitchen" width={200} />
-
-            <h1>Navigation</h1>
-            <Nav/>
+            <div id="main-navigation-footer">
+                <h1>Navigation</h1>
+                <Nav/>
+            </div>
             
-            <nav>
+            <nav id="contact-nav-footer">
                 <h1>Contact</h1>
                 <address>
                     1776 North Beach Road<br/>
@@ -21,7 +22,7 @@ const Footer = () => {
                 </address>
             </nav>            
             
-            <nav>
+            <nav id="social-nav-footer">
                 <h1>Social Media</h1>
               <ul>
                 <li><a href="index.html">Instagram</a></li>
