@@ -16,6 +16,7 @@ const Footer = () => {
                     1776 North Beach Road<br/>
                     Chicago, IL 60611
                 </address>
+                <br/>
                 <a href="tel:+12345678989">(234) 567-8989</a>
                 <address>
                     <a href="mailto:littlelemon@littlelemonchicago.com">littlelemon@littlelemonchicago.com</a>
