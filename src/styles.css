@@ -63,6 +63,7 @@
         color: var(--primary-green);
     }
     
+    
     main {
         grid-row: 2;
         grid-column: span 12;
@@ -497,13 +498,20 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
     
     #root > #main-nav ul {
         list-style: none;
         padding: 0;
+        display: none;
+        margin-top: 40px;
+    }
+    
+    
+    #root > #main-nav .nav-list.show {
+        display: block;
     }
     
     #root > #main-nav a {
@@ -519,6 +527,24 @@
     #main-nav a:hover {
         color: var(--primary-green);
     }
+    
+    
+    /* Hamburger menu icon */
+    #root > nav .menu-icon {
+        cursor: pointer;
+        display: show; /* initially hidden on larger screens */
+    }
+    
+    #root > nav .bar {
+        width: 30px;
+        height: 3px;
+        background-color: var(--highlight-black);
+        margin: 6px 0;
+    }
+    
+    #root > #main-nav .menu-icon.open {
+        displey: none;    
+    }    
     
     
     button {
