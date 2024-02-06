@@ -1,3 +1,5 @@
+import HomePage from './HomePage'
+
 import Header from './Header'
 import Nav from './Nav'
 import Main from './Main'
@@ -11,10 +13,7 @@ import './styles.css'; // Import your CSS file
 function App() {
   return (
     <>
-      <Header/>
-      <Nav/>
-      <Main/>
-      <Footer/>
+      <HomePage/>
     </>
   );
 }
