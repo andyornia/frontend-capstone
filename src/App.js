@@ -1,9 +1,12 @@
-import HomePage from './HomePage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from './Header'
-import Nav from './Nav'
-import Main from './Main'
-import Footer from './Footer'
+import HomePage from './HomePage';
+import AboutPage from './AboutPage';
+import MenuPage from './MenuPage';
+import BookingPage from './BookingPage';
+import OrderPage from'./OrderPage';
+import LoginPage from './LoginPage';
+
 
 import './App.css';
 import './styles.css'; // Import your CSS file
@@ -12,10 +15,19 @@ import './styles.css'; // Import your CSS file
 
 function App() {
   return (
-    <>
-      <HomePage/>
-    </>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} /> 
+          <Route path="/menu" element={<MenuPage />} /> 
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/order" element={<OrderPage />} /> 
+          <Route path="/login" element={<LoginPage />} /> 
+        </Routes>
+      </BrowserRouter>
   );
 }
 
 export default App;
+
+
