@@ -23,16 +23,21 @@ const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
 
 
     const options = [];
-    const timeKeys = Object.keys(availableTimes);
-    timeKeys.sort();
     
-    timeKeys.forEach(key => {
-     if (availableTimes[key]) {
-      options.push(<option key={key}>{key}:00</option>);
-     } else {
-      options.push(<option key={key} class="unavailable">{key}:00</option>);
-     }
-    });
+    if (availableTimes) {
+        const timeKeys = Object.keys(availableTimes);
+        timeKeys.sort();
+        
+        timeKeys.forEach(key => {
+         if (availableTimes[key]) {
+          options.push(<option key={key}>{key}:00</option>);
+         } else {
+          options.push(<option key={key} class="unavailable">{key}:00</option>);
+         }
+        });
+    } else {
+        options.push(<option key={11}>{"11:00"}</option>);
+    }
     
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,8 +54,8 @@ const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
         <form id="reservationForm" style={{ display: 'grid', maxWidth: '200px', gap: '20px' }} onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
            <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleChange} />
-           <label for="reservationTime">Choose time</label>
-           <select id="reservationTime" name="reservationTime" value={formData.reservationTime} onChange={handleChange}>
+           <label htmlFor="reservationTime">Choose time</label>
+           <select data-testid="reservationTime" id="reservationTime" name="reservationTime" value={formData.reservationTime} onChange={handleChange}>
               {options}
            </select>
            <label htmlFor="guests">Number of guests</label>
@@ -60,7 +65,7 @@ const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
               <option>Birthday</option>
               <option>Anniversary</option>
            </select>
-           <input type="submit" value="Make Your reservation"></input>
+           <button type="submit" value="Make Your reservation">Reserve</button>
         </form>
     );
 };
