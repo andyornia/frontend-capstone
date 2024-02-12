@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ReservationForm = () => {
+const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
     
     // Get today's date
     const today = new Date();
@@ -21,15 +21,18 @@ const ReservationForm = () => {
         occasion: 'Birthday'
     });
 
+
     const options = [];
-    for (let i = 11; i <= 22; i++) {
-      options.push(<option key={i}>{i}:00</option>);
-    }
-     
-    const [availableTimes, setAvailableTimes] = useState(
-        options
-    )
+    const timeKeys = Object.keys(availableTimes);
+    timeKeys.sort();
     
+    timeKeys.forEach(key => {
+     if (availableTimes[key]) {
+      options.push(<option key={key}>{key}:00</option>);
+     } else {
+      options.push(<option key={key} class="unavailable">{key}:00</option>);
+     }
+    });
     
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -39,6 +42,7 @@ const ReservationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        updateTimes(formData.reservationTime.split(':')[0], false, formData.reservationDate);
     }
     
     return (
@@ -47,7 +51,7 @@ const ReservationForm = () => {
            <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleChange} />
            <label for="reservationTime">Choose time</label>
            <select id="reservationTime" name="reservationTime" value={formData.reservationTime} onChange={handleChange}>
-              {availableTimes}
+              {options}
            </select>
            <label htmlFor="guests">Number of guests</label>
            <input type="number" placeholder="2" min="1" max="10" id="guests" name="guests" value={formData.guests} onChange={handleChange} />
@@ -61,4 +65,4 @@ const ReservationForm = () => {
     );
 };
 
-export default ReservationForm;
+export default BookingForm;

@@ -1,19 +1,14 @@
 import React from 'react';
 
-import Header from './Header'
-import Nav from './Nav'
 import BookingForm from './BookingForm'
-// import Main from './Main'
-// import Footer from './Footer'
+import Main from './Main'
 
-const HomePage = () => {
+const BookingPage = () => {
     return (
-    <>
-      <Header/>
-      <Nav/>
-      <BookingForm/>
-    </>
+    <Main>
+      <BookingForm />
+    </Main>
     );
 };
 
-export default HomePage;
+export default BookingPage;

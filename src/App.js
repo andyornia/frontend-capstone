@@ -7,13 +7,10 @@ import BookingPage from './BookingPage';
 import OrderPage from'./OrderPage';
 import LoginPage from './LoginPage';
 
-
 import './App.css';
 import './styles.css'; // Import your CSS file
 
-
-
-function App() {
+function App({ children }) {
   return (
       <BrowserRouter>
         <Routes>

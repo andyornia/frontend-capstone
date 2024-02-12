@@ -1,18 +1,18 @@
 import React from 'react';
 
-import Header from './Header'
-import Nav from './Nav'
-import Main from './Main'
-import Footer from './Footer'
+import Main from './Main';
+import CallToAction from './CallToAction';
+import Specials from './Specials';
+import Chicago from './Chicago';
+
 
 const HomePage = () => {
     return (
-    <>
-      <Header/>
-      <Nav/>
-      <Main/>
-      <Footer/>
-    </>
+    <Main>
+        <CallToAction/>
+        <Specials/>
+        <Chicago/>
+    </Main>
     );
 };
 
