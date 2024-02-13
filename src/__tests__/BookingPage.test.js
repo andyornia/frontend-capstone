@@ -25,7 +25,30 @@ test('Clicking on a link navigates to the About page and finds an element by ID'
   options.forEach((option, index) => {
     expect(option).toHaveTextContent(optionTexts[index]);
   });
-
   
+  // Find the select element
+  const selectElement = screen.getByTestId('reservationTime');
+
+  // Simulate selecting an option
+  fireEvent.change(selectElement, { target: { value: '14:00' } });
+
+  // Assert that onSelect function is called with the selected value
+  expect(selectElement).toHaveValue('14:00');
+
+  fireEvent.click(screen.getByText('Reserve'));
+  
+  await waitFor(() => {
+    const optionElement14 = screen.getByText('14:00');
+    // Assert that the option element has the class "unavailable"
+    expect(optionElement14).toHaveTextContent('14:00');
+    expect(optionElement14).toHaveClass('unavailable');
+    
+    const optionElement11 = screen.getByText('11:00');
+    // Assert that the option element has the class "unavailable"
+    expect(optionElement11).toHaveTextContent('11:00');
+    expect(optionElement11).not.toHaveClass('unavailable');    
+  });
+
+
   
 });
