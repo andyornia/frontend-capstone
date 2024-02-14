@@ -6,14 +6,13 @@ import Header from './Header';
 import Nav from './Nav';
 import Footer from './Footer';
 
+import allTimes from './mockAPI/allTimes';
+import { fetchAPI, submitAPI } from './mockAPI/myAPI';
 
 function Main({ children }) {
     
-   const options = {};
-   for (let i = 11; i <= 22; i++) {
-      options[i] = true;
-   }
-    
+  const options = fetchAPI('2024-01-01');
+
   function timeReducer(state, action) {
       switch (action.type) {
           case 'initialize':

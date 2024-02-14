@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { fetchAPI, submitAPI } from './mockAPI/myAPI';
 
 const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
+    
+    fetchAPI('2024-01-01');
     
     // Get today's date
     const today = new Date();
@@ -29,11 +32,7 @@ const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
         timeKeys.sort();
         
         timeKeys.forEach(key => {
-         if (availableTimes[key]) {
-          options.push(<option key={key}>{key}:00</option>);
-         } else {
-          options.push(<option key={key} class="unavailable">{key}:00</option>);
-         }
+            options.push(<option key={key} className={availableTimes[key] ? "" : "unavailable"}>{key}:00</option>);
         });
     } else {
         options.push(<option key={11}>{"11:00"}</option>);
@@ -51,7 +50,7 @@ const BookingForm = ({ availableTimes, initializeTimes, updateTimes }) => {
     }
     
     return (
-        <form id="reservationForm" style={{ display: 'grid', maxWidth: '200px', gap: '20px' }} onSubmit={handleSubmit}>
+        <form id="reservationForm" onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
            <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleChange} />
            <label htmlFor="reservationTime">Choose time</label>

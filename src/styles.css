@@ -11,50 +11,59 @@
 
 }
 
+/*#reservationForm {*/
+/*    margin: 0 auto 20px auto;*/
+/*}*/
+
+/*#bookingFormHeadline {*/
+/*    margin: 0px auto;*/
+/*    margin-bottom: 30px;*/
+/*    padding: 30px 0;*/
+/*    text-align: center;*/
+/*    background-color: var(--primary-green);*/
+/*    color: var(--primary-yellow);*/
+/*}*/
+
+/*#reservationForm label {*/
+/*    display: block;*/
+/*    font-weight: bold;*/
+/*    margin: 0;*/
+/*    font-family: var(--karla-font);*/
+/*    font-size: 18px;*/
+/*}*/
+
+/*#reservationForm input,*/
+/*#reservationForm select {*/
+/*    width: 100%;*/
+/*    padding: 8px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    box-sizing: border-box;*/
+/*  }*/
+
+/*#reservationForm button {*/
+/*    padding: 10px 20px;*/
+/*    background-color: var(--primary-yellow);*/
+/*    color: var(--highlight-black);*/
+/*    font-family: var(--karla-font);*/
+/*    border: none;*/
+/*    border-radius: 15px;*/
+/*    cursor: pointer;*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    width: 220px;*/
+/*    height: 50px;*/
+/*  }*/
+
 #reservationForm {
-    margin: 0 auto 20px auto;
+    display: grid;
+    width: 200px;
+    gap: 20px;
 }
 
-#bookingFormHeadline {
-    margin: 0px auto;
-    margin-bottom: 30px;
-    padding: 30px 0;
-    text-align: center;
-    background-color: var(--primary-green);
-    color: var(--primary-yellow);
+.unavailable {
+    font-style: italic;
 }
-
-#reservationForm label {
-    display: block;
-    font-weight: bold;
-    margin: 0;
-    font-family: var(--karla-font);
-    font-size: 18px;
-}
-
-#reservationForm input,
-#reservationForm select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-
-#reservationForm button {
-    padding: 10px 20px;
-    background-color: var(--primary-yellow);
-    color: var(--highlight-black);
-    font-family: var(--karla-font);
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    width: 220px;
-    height: 50px;
-  }
-
 
 @media (min-width: 768px) {
 
