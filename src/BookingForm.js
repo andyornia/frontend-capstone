@@ -17,20 +17,25 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading }) => {
     
     const [formData, setFormData] = useState({
         reservationDate: formattedDate,
-        reservationTime: '17:00',
+        reservationTime: '',
         guests: '2',
         occasion: 'Birthday'
     });
 
 
     const options = [];
-    
+    let firstTime = '';
+    /* TODO: figure out how to make the default value the first available time so that submitting
+    that value in the form works firstTime = (availableTimes[key]) && firstTime==='' ? key : ''; 
+    */
+
     if (availableTimes) {
         const timeKeys = Object.keys(availableTimes);
         timeKeys.sort();
         
         timeKeys.forEach(key => {
             options.push(<option key={key} disabled={!availableTimes[key]} >{key}:00</option>);
+            console.log(firstTime);
         });
     } else {
         options.push(<option key={11}>{"11:00"}</option>);
@@ -44,6 +49,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(availableTimes);
+        console.log(formData);
         availableTimesDispatch({ type: 'update', payload: { [formData.reservationTime.split(':')[0]]: false } });
         console.log(availableTimes);
     }
