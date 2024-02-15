@@ -2,8 +2,6 @@
 import allTimes from './allTimes';
 
 export const fetchAPI = (date) => {
-    console.log(date);
-    console.log(allTimes);
 
     let times = { ...allTimes };
     
@@ -21,10 +19,11 @@ export const fetchAPI = (date) => {
        } 
     });
 
-    console.log(times)
-    return times;
-    
-    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(times);
+        }, 1000);
+    });
 };
 
 export const submitAPI = (formData) => {

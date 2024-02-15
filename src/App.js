@@ -10,16 +10,20 @@ import LoginPage from './LoginPage';
 import './App.css';
 import './styles.css'; // Import your CSS file
 
+/* 
+  <Route path="/about" element={<AboutPage />} /> 
+  <Route path="/menu" element={<MenuPage />} /> 
+          <Route path="/order" element={<OrderPage />} /> 
+          <Route path="/login" element={<LoginPage />} /> 
+
+*/
+
 function App({ children }) {
   return (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} /> 
-          <Route path="/menu" element={<MenuPage />} /> 
           <Route path="/booking" element={<BookingPage />} />
-          <Route path="/order" element={<OrderPage />} /> 
-          <Route path="/login" element={<LoginPage />} /> 
         </Routes>
       </BrowserRouter>
   );

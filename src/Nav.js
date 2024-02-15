@@ -12,9 +12,9 @@ const Nav = () => {
   return (
     <nav id="main-nav">
       <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu} >
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
       </div>
       <ul className={`nav-list ${isOpen ? 'show' : ''}`}>
         <li><Link to="/">Home</Link></li>
