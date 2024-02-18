@@ -27,20 +27,16 @@ function Main({ children }) {
   };
   
   const [availableTimesState, availableTimesDispatch] = useReducer(timeReducer, initialState);
+  
+  function initializeTimes(data) {
+    availableTimesDispatch({ type: 'initialize', payload: data });
+  }
+  
+  function updateTimes(time, newValue, date) {
+      availableTimesDispatch({ type: 'update', payload: { [time]: newValue } });
+  }
+  
 
-  // function initializeTimes() {
-  //     availableTimesDispatch({ type: 'initialize' });
-  // }
-  
-  // function updateTimes(time, newValue, date) {
-  //     availableTimesDispatch({ type: 'update', payload: { [time]: newValue } });
-  // }
-  
-  useEffect(() => {
-    fetchAPI('2024-01-01')
-    .then(data => availableTimesDispatch({ type: 'initialize', payload: data }))
-    .catch(error => console.error('Error fetching data:', error));
-  }, []);
   
   return (
     <>
@@ -51,7 +47,10 @@ function Main({ children }) {
           {React.Children.map(children, (child) =>
             React.cloneElement(child, { availableTimes: availableTimesState.availableTimes, 
             availableTimesDispatch: availableTimesDispatch, 
-            loading: availableTimesState.loading.toString() })
+            loading: availableTimesState.loading,
+            initializeTimes: initializeTimes,
+            updateTimes: updateTimes
+            })
           )}        
         </main>
         <Footer />

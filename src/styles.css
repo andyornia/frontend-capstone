@@ -11,6 +11,17 @@
 
 }
 
+#loadingFormTimes {
+    color: var(--secondary-salmon);
+}
+
+.warninghidden {
+    display: none;
+}
+.timeshidden {
+    display: none;
+}
+
 #reservationForm {
     margin: 0 auto 20px auto;
 }
