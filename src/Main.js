@@ -1,6 +1,6 @@
 // Main.js
 
-import React, {useReducer, useEffect} from 'react';
+import React, {useReducer, useEffect, useCallback } from 'react';
 
 import Header from './Header';
 import Nav from './Nav';
@@ -28,15 +28,42 @@ function Main({ children }) {
   
   const [availableTimesState, availableTimesDispatch] = useReducer(timeReducer, initialState);
   
-  function initializeTimes(data) {
-    availableTimesDispatch({ type: 'initialize', payload: data });
-  }
+  // function initializeTimes(data) {
+    // availableTimesDispatch({ type: 'initialize', payload: data });
+  // }
+  
+  const initializeTimes = useCallback((data) => {
+        availableTimesDispatch({ type: 'initialize', payload: data });
+  }, []);
   
   function updateTimes(time, newValue, date) {
       availableTimesDispatch({ type: 'update', payload: { [time]: newValue } });
   }
   
-
+  function todaysDate() {
+        
+        var today = new Date();
+        
+        // Extract year, month, and day
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+        var day = String(today.getDate()).padStart(2, '0');
+    
+        // Format the date
+        var formattedDate = year + '-' + month + '-' + day;
+        
+        return formattedDate;
+    
+  }  
+  
+  useEffect(() => {
+        
+        fetchAPI(todaysDate())
+        .then(data => {
+            initializeTimes(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+  }, [initializeTimes]);
   
   return (
     <>
