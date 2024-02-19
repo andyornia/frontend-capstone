@@ -20,7 +20,9 @@ function Main({ children }) {
           case 'initialize':
               return { availableTimes: action.payload, loading: false};
           case 'update':
-              return { ...state, availableTimes: { ...state.availableTimes, ...action.payload }}
+              return { ...state, availableTimes: { ...state.availableTimes, ...action.payload }, loading: false}
+          case 'load':
+              return { ...state, loading: true}
           default:
               return state;
       }
@@ -36,9 +38,18 @@ function Main({ children }) {
         availableTimesDispatch({ type: 'initialize', payload: data });
   }, []);
   
-  function updateTimes(time, newValue, date) {
-      availableTimesDispatch({ type: 'update', payload: { [time]: newValue } });
-  }
+  // function updateTimes(time, newValue, date) {
+      // availableTimesDispatch({ type: 'update', payload: { [time]: newValue } });
+  // }
+  
+  const updateTimes = useCallback((data) => {
+      availableTimesDispatch({ type: 'update', payload: data });
+  }, []);
+  
+  const loadData = useCallback((data) => {
+      availableTimesDispatch({ type: 'load' });
+  }, []);  
+
   
   function todaysDate() {
         
@@ -57,7 +68,6 @@ function Main({ children }) {
   }  
   
   useEffect(() => {
-        
         fetchAPI(todaysDate())
         .then(data => {
             initializeTimes(data);
@@ -76,7 +86,8 @@ function Main({ children }) {
             availableTimesDispatch: availableTimesDispatch, 
             loading: availableTimesState.loading,
             initializeTimes: initializeTimes,
-            updateTimes: updateTimes
+            updateTimes: updateTimes,
+            loadData: loadData
             })
           )}        
         </main>

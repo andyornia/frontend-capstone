@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { fetchAPI, submitAPI } from './mockAPI/myAPI';
+import React, { useState, useEffect } from 'react';
+import { submitAPI, fetchAPI } from './mockAPI/myAPI';
 
-const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes }) => {
+const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData }) => {
       
     // Get today's date
     const today = new Date();
@@ -17,13 +17,15 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
 
     const [menuOptions, setMenuOptions] = useState([]);
     const [firstTime, setFirstTime] = useState(0);
-
+    const [noTimes, setNoTimes] = useState(false);
     const [formData, setFormData] = useState({
         reservationDate: formattedDate,
         reservationTime: firstTime,
         guests: '2',
         occasion: 'Birthday'
     });
+    
+    const [formDateValue, setFormDateValue] = useState({formattedDate});
     
     
     useEffect(() => {
@@ -32,7 +34,6 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         
         console.log('availableTimes effect running');
         if (typeof availableTimes === 'object' && Object.keys(availableTimes).length !== 0) {
-            const timeKeys = Object.keys(availableTimes);
             const trueKeys = Object.entries(availableTimes)
               .filter(([key, value]) => value === true)
               .map(([key, value]) => key)
@@ -49,6 +50,16 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
             timeKeys.forEach(key => {
                 options.push(<option key={key} disabled={!availableTimes[key]} >{key}:00</option>);
             });
+            
+            let allFalse = true;
+            for (const key in availableTimes) {
+              if (availableTimes[key] === true) {
+                allFalse = false;
+                break;
+              }
+            }
+            setNoTimes(allFalse);
+
         } else {
             options.push(<option key={11}>{"11:00"}</option>);
         }   
@@ -57,8 +68,24 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         
     }, [availableTimes]);
 
+
+    useEffect(() => {
+        loadData();
+        fetchAPI(formDateValue)
+        .then(data => {
+            updateTimes(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }, [formDateValue, updateTimes, loadData])
+
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+    
+    const handleDateChange = (e) => {
+        const {name, value} = e.target;
+        setFormDateValue(value);
         setFormData({ ...formData, [name]: value });
     }
     
@@ -70,15 +97,14 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         console.log(availableTimes);
     }
     
-    console.log('loading', loading);
-    
     return (
         <form id="reservationForm" onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
-           <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleChange} />
+           <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleDateChange} />
            <label htmlFor="reservationTime">Choose time</label>
            <span id="loadingFormTimes" className={loading ? "": "warninghidden"} >searching for available times...</span>
-           <select className={!loading ? "": "timeshidden"} data-testid="reservationTime" id="reservationTime" name="reservationTime" value={formData.reservationTime} onChange={handleChange}>
+           <span id="noAvailableTimes" className={!noTimes ? "availabletimeshidden": ""} >no times available</span>
+           <select className={`${loading ? "timeshidden" : ""} ${noTimes ? "availabletimeshidden" : ""}`} data-testid="reservationTime" id="reservationTime" name="reservationTime" value={formData.reservationTime} onChange={handleChange}>
               {menuOptions}
            </select>
            <label htmlFor="guests">Number of guests</label>
@@ -88,7 +114,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
               <option>Birthday</option>
               <option>Anniversary</option>
            </select>
-           <button type="submit" value="Make Your reservation" disabled={loading}>Reserve</button>
+           <button type="submit" value="Make Your reservation" disabled={loading || noTimes}>Reserve</button>
         </form>
     );
 };

@@ -18,6 +18,9 @@
 .warninghidden {
     display: none;
 }
+.availabletimeshidden {
+    display: none;
+}
 .timeshidden {
     display: none;
 }

@@ -22,7 +22,7 @@ export const fetchAPI = (date) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(times);
-        }, 5000);
+        }, 1000);
     });
 };
 
