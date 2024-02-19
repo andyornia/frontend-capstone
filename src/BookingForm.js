@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import { submitAPI, fetchAPI } from './mockAPI/myAPI';
 
-const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData }) => {
-      
+const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData, submitForm }) => {
+     
+    const navigate = useNavigate();
+
     // Get today's date
     const today = new Date();
     
@@ -18,6 +22,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     const [menuOptions, setMenuOptions] = useState([]);
     const [firstTime, setFirstTime] = useState(0);
     const [noTimes, setNoTimes] = useState(false);
+    const [formSuccess, setFormSuccess] = useState(false);
     const [formData, setFormData] = useState({
         reservationDate: formattedDate,
         reservationTime: firstTime,
@@ -29,10 +34,8 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     
     
     useEffect(() => {
-        
         let options = [];
         
-        console.log('availableTimes effect running');
         if (typeof availableTimes === 'object' && Object.keys(availableTimes).length !== 0) {
             const trueKeys = Object.entries(availableTimes)
               .filter(([key, value]) => value === true)
@@ -91,11 +94,17 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(availableTimes);
-        console.log(formData);
         availableTimesDispatch({ type: 'update', payload: { [formData.reservationTime.split(':')[0]]: false } });
-        console.log(availableTimes);
+        if (submitForm(formData, availableTimes)) {
+            setFormSuccess(true);
+        }
     }
+    
+    useEffect(() => {
+        if (formSuccess) {
+            navigate("/confirmation");
+        }
+    }, [formSuccess, navigate]);
     
     return (
         <form id="reservationForm" onSubmit={handleSubmit}>

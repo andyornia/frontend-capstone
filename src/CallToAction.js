@@ -4,8 +4,8 @@ const CallToAction = () => {
     return (
         <section id="about-section">
             <div id="about-info">
-                <h1 class="title">Little Lemon</h1>
-                <h2 class="city">Chicago</h2>
+                <h1 className="title">Little Lemon</h1>
+                <h2 className="city">Chicago</h2>
                 <p>
                     We are a family owned Mediterranean restaurant, 
                     focused on traditional recipes served with a modern twist.

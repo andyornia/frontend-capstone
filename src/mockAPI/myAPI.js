@@ -26,9 +26,8 @@ export const fetchAPI = (date) => {
     });
 };
 
-export const submitAPI = (formData) => {
-  console.log(formData);
-  
-  
+export const submitAPI = (formData, availableTimes) => {
+  const {reservationDate, reservationTime, guests, occasion} = formData;
+  return availableTimes[reservationTime.split(':')[0]];
 };
 /* eslint-enable no-unused-vars */

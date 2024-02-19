@@ -6,6 +6,7 @@ import MenuPage from './MenuPage';
 import BookingPage from './BookingPage';
 import OrderPage from'./OrderPage';
 import LoginPage from './LoginPage';
+import ConfirmedBooking from './ConfirmedBooking';
 
 import './App.css';
 import './styles.css'; // Import your CSS file
@@ -24,6 +25,8 @@ function App({ children }) {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/booking" element={<BookingPage />} />
+          <Route path="/confirmation" element={<ConfirmedBooking />} />
+          
         </Routes>
       </BrowserRouter>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 import BookingForm from './BookingForm'
 import Main from './Main'
 
-const BookingPage = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData }) => {
+const BookingPage = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData, submitForm }) => {
     return (
     <Main>
       <h1 id="bookingFormHeadline">Make a Reservation</h1>
@@ -14,6 +14,7 @@ const BookingPage = ({ availableTimes, availableTimesDispatch, loading, initiali
         initializeTimes={initializeTimes}
         updateTimes={updateTimes}
         loadData={loadData}
+        submitForm={submitForm}
       />
     </Main>
     );

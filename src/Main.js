@@ -48,7 +48,11 @@ function Main({ children }) {
   
   const loadData = useCallback((data) => {
       availableTimesDispatch({ type: 'load' });
-  }, []);  
+  }, []);
+  
+  const submitForm = useCallback((formData) => {
+    return submitAPI(formData, availableTimesState.availableTimes); 
+  }, [availableTimesState]);
 
   
   function todaysDate() {
@@ -87,7 +91,8 @@ function Main({ children }) {
             loading: availableTimesState.loading,
             initializeTimes: initializeTimes,
             updateTimes: updateTimes,
-            loadData: loadData
+            loadData: loadData,
+            submitForm: submitForm
             })
           )}        
         </main>
