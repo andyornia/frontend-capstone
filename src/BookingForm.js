@@ -23,6 +23,8 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     const [firstTime, setFirstTime] = useState(0);
     const [noTimes, setNoTimes] = useState(false);
     const [formSuccess, setFormSuccess] = useState(false);
+    const [formInvalid, setFormInvalid] = useState(false);
+    const [guestsInvalid, setGuestsInvalid] = useState(false);
     const [formData, setFormData] = useState({
         reservationDate: formattedDate,
         reservationTime: firstTime,
@@ -84,7 +86,31 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        if ((name === "guests") && ((value < 1) || (value > 10))) {
+            setFormInvalid(true);
+            setGuestsInvalid(true);
+        } else if ((name === "guests") && ((value > 1) && (value < 10))) {
+            setFormInvalid(false);
+            setGuestsInvalid(false);
+        }
     }
+    
+    const handleInputBlur = (e) => {
+        const {target} = e;
+        const { name, value } = target;
+        let guests = formData.guests;
+        if (name === "guests") {
+            if ((guests < 1) || (guests > 10)) {
+                setFormInvalid(true);
+                setGuestsInvalid(true);
+            } else {
+                setFormInvalid(false);
+                setGuestsInvalid(false);
+            }
+        }
+        
+        
+    };    
     
     const handleDateChange = (e) => {
         const {name, value} = e.target;
@@ -109,7 +135,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     return (
         <form id="reservationForm" onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
-           <input type="date" id="reservationDate" name="reservationDate" value={formData.reservationDate} onChange={handleDateChange} />
+           <input type="date" id="reservationDate" name="reservationDate" data-testid="reservationDate" value={formData.reservationDate} onChange={handleDateChange} />
            <label htmlFor="reservationTime">Choose time</label>
            <span id="loadingFormTimes" className={loading ? "": "warninghidden"} >searching for available times...</span>
            <span id="noAvailableTimes" className={!noTimes ? "availabletimeshidden": ""} >no times available</span>
@@ -117,13 +143,14 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
               {menuOptions}
            </select>
            <label htmlFor="guests">Number of guests</label>
-           <input type="number" placeholder="2" min="1" max="10" id="guests" name="guests" value={formData.guests} onChange={handleChange} />
+           <span id="guestsWarning" className={guestsInvalid ? "warning" : "hidden warning" } >*min. 2 guests, max. 10 guests</span>
+           <input type="number" placeholder="2" min="1" max="10" id="guests" name="guests" value={formData.guests} onChange={handleChange} onBlur={handleInputBlur} />
            <label htmlFor="occasion">Occasion</label>
            <select id="occasion" name="occasion" value={formData.occasion} onChange={handleChange} >
               <option>Birthday</option>
               <option>Anniversary</option>
            </select>
-           <button type="submit" value="Make Your reservation" disabled={loading || noTimes}>Reserve</button>
+           <button className={(loading || noTimes || formInvalid) ? "disablebutton": ""} type="submit" value="Make Your reservation" disabled={(loading || noTimes || formInvalid)} >Reserve</button>
         </form>
     );
 };

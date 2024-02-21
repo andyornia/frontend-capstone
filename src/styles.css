@@ -54,6 +54,11 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
+ 
+ #loadingFormTimes, #noAvailableTimes {
+     width: 100%;
+     padding: 8px;
+ }
 
 #reservationForm button {
     padding: 10px 20px;
@@ -75,7 +80,16 @@
     gap: 20px;
 }
 
+.warning {
+    font-size:12px;
+    color: red;
+    padding: 0;
+    margin: 0;
+}
 
+.hidden {
+    display: none;
+}
 
 @media (min-width: 768px) {
 
@@ -544,6 +558,11 @@
         margin-bottom:30px;
     }    
     
+    #reservationForm button.disablebutton {
+        background-color: var(--highlight-grey);
+        opacity: 0.8;
+    }    
+    
     
 }
 
@@ -966,6 +985,11 @@
         padding-bottom:40px;
     }        
     
+    #reservationForm button.disablebutton {
+        background-color: var(--highlight-grey);
+        opacity: 0.8;
+    }    
+
 
         
 }
