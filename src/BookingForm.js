@@ -2,22 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { submitAPI, fetchAPI } from './mockAPI/myAPI';
+import { todaysDate } from './mockAPI/todaysDate';
 
 const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initializeTimes, updateTimes, loadData, submitForm }) => {
      
     const navigate = useNavigate();
-
-    // Get today's date
-    const today = new Date();
-    
-    // Get year, month, and day
-    const year = today.getFullYear();
-    // January is 0, so we add 1 to get the current month
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
     
     // Format the date as 'YYYY-MM-DD'
-    const formattedDate = `${year}-${month}-${day}`;
+    const formattedDate = todaysDate();
 
     const [menuOptions, setMenuOptions] = useState([]);
     const [firstTime, setFirstTime] = useState(0);
@@ -25,6 +17,8 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     const [formSuccess, setFormSuccess] = useState(false);
     const [formInvalid, setFormInvalid] = useState(false);
     const [guestsInvalid, setGuestsInvalid] = useState(false);
+    const [dateInvalid, setDateInvalid] = useState(false);
+    
     const [formData, setFormData] = useState({
         reservationDate: formattedDate,
         reservationTime: firstTime,
@@ -89,7 +83,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         if ((name === "guests") && ((value < 1) || (value > 10))) {
             setFormInvalid(true);
             setGuestsInvalid(true);
-        } else if ((name === "guests") && ((value > 1) && (value < 10))) {
+        } else if ((name === "guests") && ((value > 1) && (value <= 10))) {
             setFormInvalid(false);
             setGuestsInvalid(false);
         }
@@ -109,6 +103,20 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
             }
         }
         
+        if (name === "reservationDate") {
+            const today = new Date(todaysDate());
+            const reservation = new Date(value);
+            let todayfuture= new Date(today);
+            todayfuture.setMonth(todayfuture.getMonth() + 3);
+            
+            if (reservation < today || reservation > todayfuture) {
+                setDateInvalid(true);
+                setFormInvalid(true);
+            } else {
+                setDateInvalid(false);
+                setFormInvalid(false);
+            }
+        }
         
     };    
     
@@ -116,6 +124,22 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         const {name, value} = e.target;
         setFormDateValue(value);
         setFormData({ ...formData, [name]: value });
+        
+        const today = new Date(todaysDate());
+        const reservation = new Date(value);
+        let todayfuture= new Date(today);
+        todayfuture.setMonth(todayfuture.getMonth() + 3);
+        
+        if (reservation < today || reservation > todayfuture) {
+            setDateInvalid(true);
+            setFormInvalid(true);
+        } else {
+            setDateInvalid(false);
+            setFormInvalid(false);
+        }
+        
+        
+        
     }
     
     const handleSubmit = (e) => {
@@ -132,10 +156,25 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         }
     }, [formSuccess, navigate]);
     
+    let maxReservationDate = new Date();
+    maxReservationDate.setMonth(maxReservationDate.getMonth() + 3);
+    let maxYear = maxReservationDate.getFullYear();
+    let maxMonth = String(maxReservationDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+    let maxDay = String(maxReservationDate.getDate() - 1).padStart(2, '0');
+    maxReservationDate = maxMonth + '-' + maxDay + '-' + maxYear;
+    
+    let today = new Date();
+    let todayYear = today.getFullYear();
+    let todayMonth = String(today.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+    let todayDay = String(today.getDate()).padStart(2, '0');
+    today = todayMonth + '-' + todayDay + '-' + todayYear;
+
+
     return (
         <form id="reservationForm" onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
-           <input type="date" id="reservationDate" name="reservationDate" data-testid="reservationDate" value={formData.reservationDate} onChange={handleDateChange} />
+           <span id="dateWarning" className={dateInvalid ? "warning" : "hidden warning" } >*can only reserve from {today} to {maxReservationDate}</span>
+           <input type="date" id="reservationDate" name="reservationDate" data-testid="reservationDate" value={formData.reservationDate} onChange={handleDateChange} onBlur={handleInputBlur} />
            <label htmlFor="reservationTime">Choose time</label>
            <span id="loadingFormTimes" className={loading ? "": "warninghidden"} >searching for available times...</span>
            <span id="noAvailableTimes" className={!noTimes ? "availabletimeshidden": ""} >no times available</span>
