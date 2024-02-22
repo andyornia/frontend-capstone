@@ -158,9 +158,10 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     
     let maxReservationDate = new Date();
     maxReservationDate.setMonth(maxReservationDate.getMonth() + 3);
+    maxReservationDate.setDate(maxReservationDate.getDate() - 1); // Subtract one day
     let maxYear = maxReservationDate.getFullYear();
     let maxMonth = String(maxReservationDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
-    let maxDay = String(maxReservationDate.getDate() - 1).padStart(2, '0');
+    let maxDay = String(maxReservationDate.getDate()).padStart(2, '0');
     maxReservationDate = maxMonth + '-' + maxDay + '-' + maxYear;
     
     let today = new Date();
@@ -173,7 +174,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
     return (
         <form id="reservationForm" onSubmit={handleSubmit}>
            <label htmlFor="reservationDate">Choose date</label>
-           <span id="dateWarning" className={dateInvalid ? "warning" : "hidden warning" } >*can only reserve from {today} to {maxReservationDate}</span>
+           <span id="dateWarning" data-testid="dateWarning" className={dateInvalid ? "warning" : "hidden warning" } >*can only reserve from {today} to {maxReservationDate}</span>
            <input type="date" id="reservationDate" name="reservationDate" data-testid="reservationDate" value={formData.reservationDate} onChange={handleDateChange} onBlur={handleInputBlur} />
            <label htmlFor="reservationTime">Choose time</label>
            <span id="loadingFormTimes" className={loading ? "": "warninghidden"} >searching for available times...</span>
@@ -182,7 +183,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
               {menuOptions}
            </select>
            <label htmlFor="guests">Number of guests</label>
-           <span id="guestsWarning" className={guestsInvalid ? "warning" : "hidden warning" } >*min. 2 guests, max. 10 guests</span>
+           <span id="guestsWarning" data-testid="guestWarning" className={guestsInvalid ? "warning" : "hidden warning" } >*min. 2 guests, max. 10 guests</span>
            <input type="number" placeholder="2" min="1" max="10" id="guests" name="guests" value={formData.guests} onChange={handleChange} onBlur={handleInputBlur} />
            <label htmlFor="occasion">Occasion</label>
            <select id="occasion" name="occasion" value={formData.occasion} onChange={handleChange} >
