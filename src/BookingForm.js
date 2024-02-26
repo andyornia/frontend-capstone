@@ -190,7 +190,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
               <option>Birthday</option>
               <option>Anniversary</option>
            </select>
-           <button className={(loading || noTimes || formInvalid) ? "disablebutton": ""} type="submit" value="Make Your reservation" disabled={(loading || noTimes || formInvalid)} >Reserve</button>
+           <button aria-label="On Click" className={(loading || noTimes || formInvalid) ? "disablebutton": ""} type="submit" value="Make Your reservation" disabled={(loading || noTimes || formInvalid)} >Reserve</button>
         </form>
     );
 };

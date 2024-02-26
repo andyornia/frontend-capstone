@@ -26,7 +26,10 @@ function App({ children }) {
           <Route path="/" element={<HomePage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/confirmation" element={<ConfirmedBooking />} />
-          
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
   );

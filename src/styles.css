@@ -91,7 +91,25 @@
     display: none;
 }
 
+.placeholderHeadline {
+    margin: 0px auto;
+    margin-bottom: 10px;
+    padding: 30px 0;
+    text-align: center;
+    background-color: var(--primary-green);
+    color: var(--primary-yellow);
+    
+}
+
+.placeholderText {
+    width: 60%;
+    margin: 20px auto 10px auto;
+}
+
+
+
 @media (min-width: 768px) {
+
 
     body {
         margin: 0 auto;
@@ -110,7 +128,7 @@
         margin: auto;
         background: #ffffff;
     }
-    
+
     
     #root > header {
         grid-column: 3/4;
@@ -147,6 +165,7 @@
         grid-row: 2;
         grid-column: span 12;
     }
+    
     
     footer {
         grid-row: 3;
@@ -561,8 +580,7 @@
     #reservationForm button.disablebutton {
         background-color: var(--highlight-grey);
         opacity: 0.8;
-    }    
-    
+    }
     
 }
 

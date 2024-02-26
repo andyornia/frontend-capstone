@@ -18,11 +18,11 @@ const Nav = () => {
       </div>
       <ul className={`nav-list ${isOpen ? 'show' : ''}`}>
         <li><Link to="/">Home</Link></li>
-        <li><a href="index.html">About</a></li>
-        <li><a href="index.html">Menu</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/menu">Menu</a></li>
         <li><Link to="/booking">Reservations</Link></li>
-        <li><a href="index.html">Order Online</a></li>
-        <li><a href="index.html">Login</a></li>
+        <li><a href="/order">Order Online</a></li>
+        <li><a href="login">Login</a></li>
       </ul>
     </nav>
   );
