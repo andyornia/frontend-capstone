@@ -92,8 +92,7 @@
 }
 
 .placeholderHeadline {
-    margin: 0px auto;
-    margin-bottom: 10px;
+    margin: 10px auto;
     padding: 30px 0;
     text-align: center;
     background-color: var(--primary-green);
@@ -943,7 +942,7 @@
         color: var(--secondary-skin);
         font-size: 16px;
         font-family: var(--karla-font);
-        margin-top: 190px;
+        margin-top: 230px;
         padding: 20px;
         color: var(--secondary-skin);
         font-size: 16px;
@@ -1007,7 +1006,6 @@
         background-color: var(--highlight-grey);
         opacity: 0.8;
     }    
-
 
         
 }

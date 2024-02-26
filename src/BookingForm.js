@@ -23,7 +23,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
         reservationDate: formattedDate,
         reservationTime: firstTime,
         guests: '2',
-        occasion: 'Birthday'
+        occasion: 'None'
     });
     
     const [formDateValue, setFormDateValue] = useState({formattedDate});
@@ -187,6 +187,7 @@ const BookingForm = ({ availableTimes, availableTimesDispatch, loading, initiali
            <input type="number" placeholder="2" min="1" max="10" id="guests" name="guests" value={formData.guests} onChange={handleChange} onBlur={handleInputBlur} />
            <label htmlFor="occasion">Occasion</label>
            <select id="occasion" name="occasion" value={formData.occasion} onChange={handleChange} >
+              <option>None</option>
               <option>Birthday</option>
               <option>Anniversary</option>
            </select>
